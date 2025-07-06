@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUIState, useViewActions } from '../stores';
+import { useViewStore } from '../stores';
 import styles from './Titlebar.module.css';
 
 // Electron IPC will be available in the renderer process
@@ -14,8 +14,8 @@ declare global {
 }
 
 const Titlebar: React.FC = () => {
-  const { drawerOpen } = useUIState();
-  const { toggleDrawer } = useViewActions();
+  const drawerOpen = useViewStore((state) => state.drawerOpen);
+  const toggleDrawer = useViewStore((state) => state.toggleDrawer);
 
   const handleMinimize = () => {
     if (window.electron?.ipcRenderer) {

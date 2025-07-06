@@ -1,12 +1,10 @@
-/* Titlebar CSS Module */
-
+/* Titlebar Styles */
 .titlebar {
   letter-spacing: 0.05em;
   margin-bottom: 18px;
   position: relative;
   text-align: center;
   height: 50px;
-  -webkit-app-region: drag;
 }
 
 .title {
@@ -14,84 +12,43 @@
   font-size: 1rem;
   font-weight: 200;
   padding-top: 18px;
-  margin: 0;
-}
-
-.iconWrapper {
-  -webkit-app-region: no-drag;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  height: 50px;
-  width: 50px;
-  transition: all 0.2s ease;
-}
-
-.iconWrapperTitlebar {
-  composes: iconWrapper;
-}
-
-.iconWrapperSingle {
-  composes: iconWrapperTitlebar;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.iconWrapperDoubleLeft {
-  composes: iconWrapperTitlebar;
-  padding-left: 18px;
-}
-
-.iconWrapperDoubleRight {
-  composes: iconWrapperTitlebar;
-  padding-right: 18px;
 }
 
 .iconGroup {
-  position: absolute;
-  top: 0;
-  right: 0;
   display: flex;
 }
 
-.menuWrapper {
-  width: 18px;
-  height: 18px;
+.iconWrapper {
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
 }
 
-.menuWrapper.collapsed {
-  transform: rotate(90deg);
+.iconWrapperSingle {
+  /* Single icon wrapper styles */
 }
 
-.menuLine {
-  height: 2px;
-  background-color: var(--color-foreground);
-  border-radius: 1px;
-  transition: all 0.3s ease;
+.iconWrapperDoubleLeft {
+  /* Double icon wrapper left styles */
+}
+
+.iconWrapperDoubleRight {
+  /* Double icon wrapper right styles */
 }
 
 .icon {
-  transition: all 0.2s ease;
+  transition: var(--transition-default, all 0.2s ease);
 }
 
-.iconMinimize {
-  composes: icon;
-  width: 15px;
-  height: 20px;
+.iconClose line,
+.iconMinimize line {
+  stroke: var(--color-background-lightest);
+  transition: var(--transition-default, all 0.2s ease);
 }
 
-.iconClose {
-  composes: icon;
-  height: 15px;
-}
-
-/* Hover effects */
 .iconWrapperTitlebar:hover .menuLine {
   background-color: var(--color-accent);
 }
@@ -102,4 +59,34 @@
 
 .iconWrapperTitlebar:hover .iconMinimize line {
   stroke: var(--color-accent);
+}
+
+/* Menu styles */
+.menuWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 16px;
+}
+
+.menuLine {
+  background-color: var(--color-background-lightest);
+  display: inline-block;
+  transition: var(--transition-default, all 0.2s ease);
+  width: 20px;
+  height: 2px;
+}
+
+.menuLine:last-child {
+  width: 10px;
+}
+
+.menuWrapper.isCollapsed .menuLine:first-child {
+  transform: rotate(-45deg);
+  width: 12px;
+}
+
+.menuWrapper.isCollapsed .menuLine:last-child {
+  transform: rotate(45deg);
+  width: 12px;
 }
